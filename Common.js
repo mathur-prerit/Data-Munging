@@ -22,7 +22,7 @@ class readingData {
     static diffData(key,x,y){
         let diff=Math.abs(x-y)
         resultArray.push({'key':key,'x':x,'y':y,'diff':diff})
-    }
+    };
 
     static minimumDifference(){
             let minFlag
@@ -34,14 +34,6 @@ class readingData {
                 }
             }
             return minFlag
-
-       
     }
 }
-//const hello = new readingData();
-//  readingData.readFile('./weather.dat').then(()=>{
-//      console.log(data);
-//  });
-//console.log(hello.readFile('./football.dat'));
-
 module.exports = { readingData }
