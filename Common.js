@@ -19,10 +19,14 @@ class readingData {
     })
     };
 
-
+    static diffData(key,x,y){
+        resultObject.key=key
+        resultObject.x=x
+        resultObject.y=y
+        //console.log(resultObject);
     }
 
-//}
+}
 //const hello = new readingData();
 //  readingData.readFile('./weather.dat').then(()=>{
 //      console.log(data);
