@@ -9,6 +9,7 @@ class parsingData extends readingData {
       filteredData = splited.filter(data => data !== "");
 
       parsingData.diffData(Number(filteredData[0]),Number(filteredData[1]),Number(filteredData[2]))
+      parsingData.diffCalculation();
     }
 
   }

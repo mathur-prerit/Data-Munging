@@ -26,6 +26,11 @@ class readingData {
         //console.log(resultObject);
     }
 
+    static diffCalculation(){
+        resultObject.diff=Math.abs(resultObject.x-resultObject.y)
+        console.log(resultObject)
+    }
+
 }
 //const hello = new readingData();
 //  readingData.readFile('./weather.dat').then(()=>{
