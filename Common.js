@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require ("fast-csv");
 
 let data = []
-let resultObject = {key:'',x:0,y:0,diff:0};
+let resultArray =[]
 class readingData {
        static readFile(path){
            return new Promise((resolve,reject) => {
@@ -20,17 +20,23 @@ class readingData {
     };
 
     static diffData(key,x,y){
-        resultObject.key=key
-        resultObject.x=x
-        resultObject.y=y
-        //console.log(resultObject);
+        let diff=Math.abs(x-y)
+        resultArray.push({'key':key,'x':x,'y':y,'diff':diff})
     }
 
-    static diffCalculation(){
-        resultObject.diff=Math.abs(resultObject.x-resultObject.y)
-        console.log(resultObject)
-    }
+    static minimumDifference(){
+            let minFlag
+            let min=999999
+            for (let i of resultArray){
+                if (i.diff<min){
+                    min=i.diff
+                    minFlag=i
+                }
+            }
+            return minFlag
 
+       
+    }
 }
 //const hello = new readingData();
 //  readingData.readFile('./weather.dat').then(()=>{
