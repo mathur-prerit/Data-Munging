@@ -1,26 +1,22 @@
-const { readingData } = require("./Common");
+const { ReadingData } = require("./Common");
 
-class parsingData extends readingData {
-  static parseFile(row) {
-    let splited = [];
-    let filteredData = [];
-    for (let i = 2; i < row.length; i++) {
-      splited = row[i][0].trim().replace("*","").split(" ");
-      filteredData = splited.filter(data => data !== "");
+class ParsingData extends ReadingData {}
 
-      parsingData.diffData(Number(filteredData[0]),Number(filteredData[1]),Number(filteredData[2]))
-    }
-    const answer = parsingData.minimumDifference();
+const dayOfMonthColumn = 0;
+const maxTempColumn = 1;
+const minTempColumn = 2;
+const startIndex = 2
 
-    console.log(`The minimum temperature difference was: ${answer.diff} on day: ${answer.key}`);
-  }
-
-}
-
-readingData
+const parsingData = new ParsingData();
+parsingData
   .readFile("./weather.dat")
   .then(results => {
-    parsingData.parseFile(results);
+    const mydata = parsingData.parseFile(startIndex, results, dayOfMonthColumn, maxTempColumn, minTempColumn);
+    parsingData.diffData(mydata);
+    let answer = parsingData.minimumDifference();
+    console.log(
+      `The minimum temperature difference was: ${answer.diff} degree on day: ${answer.key}`
+    );
   })
   .catch(error => {
     console.log(error);

@@ -1,27 +1,28 @@
-const { readingData } = require("./Common");
+const { ReadingData } = require("./Common");
+const teamNameColumn = 1;
+const goalForColumn = 6;
+const goalAgainstColumn = 8;
+const startIndex = 1
 
-class parsingData extends readingData {
-  static parseFile(row) {
-    let splited = [];
-    let filteredData = [];
-
-    for (let i = 1; i < row.length; i++) {
-      splited = row[i][0].trim().replace("-","").split(" ");
-    filteredData = splited.filter(data => data !== "");
-
-   parsingData.diffData(filteredData[1],Number(filteredData[6]),Number(filteredData[7]))
-    }
-    const answer = parsingData.minimumDifference();
-
-    console.log(`The minimum goal difference was: ${answer.diff} with team: ${answer.key}`);
-  }
-}
-
-readingData
+class ParsingData extends ReadingData {}
+const parsingData = new ParsingData();
+parsingData
   .readFile("./football.dat")
   .then(results => {
-    parsingData.parseFile(results);
+    const mydata = parsingData.parseFile(
+      startIndex,
+      results,
+      teamNameColumn,
+      goalForColumn,
+      goalAgainstColumn
+    );
+    parsingData.diffData(mydata);
+    let answer = parsingData.minimumDifference();
+    // console.log(answer)
+    console.log(
+      `The minimum goal difference was: ${answer.diff} with team: ${answer.key}`
+    );
   })
   .catch(error => {
     console.log(error);
-  })
+  });
